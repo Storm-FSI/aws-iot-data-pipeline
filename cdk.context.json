@@ -1,0 +1,36 @@
+{
+  "availability-zones:account=900675931834:region=eu-central-1": [
+    "eu-central-1a",
+    "eu-central-1b",
+    "eu-central-1c"
+  ],
+  "endpoint-service-availability-zones:account=900675931834:region=eu-central-1:serviceName=com.amazonaws.eu-central-1.ssm": [
+    "eu-central-1a",
+    "eu-central-1b",
+    "eu-central-1c"
+  ],
+  "endpoint-service-availability-zones:account=900675931834:region=eu-central-1:serviceName=com.amazonaws.eu-central-1.kinesis-streams": [
+    "eu-central-1a",
+    "eu-central-1b",
+    "eu-central-1c"
+  ],
+  "availability-zones:account=391091994985:region=eu-central-1": [
+    "eu-central-1a",
+    "eu-central-1b",
+    "eu-central-1c",
+    "eu-central-1-ham-1a",
+    "eu-central-1-wl1-ber-wlz-1",
+    "eu-central-1-wl1-dtm-wlz-1",
+    "eu-central-1-wl1-muc-wlz-1"
+  ],
+  "endpoint-service-availability-zones:account=391091994985:region=eu-central-1:serviceName=com.amazonaws.eu-central-1.ssm": [
+    "eu-central-1a",
+    "eu-central-1b",
+    "eu-central-1c"
+  ],
+  "endpoint-service-availability-zones:account=391091994985:region=eu-central-1:serviceName=com.amazonaws.eu-central-1.kinesis-streams": [
+    "eu-central-1a",
+    "eu-central-1b",
+    "eu-central-1c"
+  ]
+}
