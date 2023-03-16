@@ -1,0 +1,479 @@
+{
+  "msg": {
+    "id": "72a832b0-b513-11ed-aa1c-8f447fb080c7",
+    "sender": "DEWVN/CTW/STS/88Simulator",
+    "timestamp": "2023-02-25T14:51:06.253933",
+    "topic": "",
+    "destinantion": "",
+    "creationtimestamp": "",
+    "starttimestamp": "",
+    "endtimestamp": "",
+    "version": "2022.005",
+    "mid": 5027
+  },
+  "che": [
+    {
+      "id": 999999,
+      "name": "DEWVN/CTW/STS/88",
+      "number": 88,
+      "type": "STS",
+      "family": "",
+      "brand": "ZPMC",
+      "model": "",
+      "location": {
+        "logical": [
+          {
+            "pom": "ioutput",
+            "pomt": "actual",
+            "qualifier": "yard",
+            "timestamp": "",
+            "value": "",
+            "status": false,
+            "block": "",
+            "row": "",
+            "bay": "",
+            "tier": ""
+          }
+        ],
+        "coordinate": [
+          {
+            "pom": "ioutput",
+            "pomt": "actual",
+            "qualifier": "WGS84",
+            "timestamp": "",
+            "value": [
+              0,
+              0
+            ],
+            "status": false,
+            "accuracy": ""
+          },
+          {
+            "pom": "output",
+            "pomt": "actual",
+            "qualifier": "WGS84",
+            "timestamp": "",
+            "value": [
+              0,
+              0
+            ],
+            "status": false,
+            "accuracy": ""
+          }
+        ]
+      },
+      "on": {
+        "status": [
+          {
+            "pom": "ioutput",
+            "pomt": "actual",
+            "timestamp": "2018-11-05T00:08:11",
+            "value": "True",
+            "offtoontime": ""
+          }
+        ],
+        "totaltimer": [
+          {
+            "pom": "ioutput",
+            "pomt": "actual",
+            "unit": "hour",
+            "timestamp": "",
+            "value": 0,
+            "offtoontime": ""
+          }
+        ]
+      },
+      "control": [
+        {
+          "id": 100,
+          "name": "",
+          "type": "",
+          "family": "",
+          "brand": "",
+          "model": "",
+          "softwareid": "",
+          "modespreader": [
+            {
+              "status": [
+                {
+                  "pom": "ioutput",
+                  "pomt": "actual",
+                  "timestamp": "2018-11-05T00:08:11",
+                  "value": "True"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "drive": [
+        {
+          "id": "",
+          "name": "",
+          "number": 0,
+          "type": "",
+          "family": "",
+          "brand": "",
+          "model": "",
+          "left_or_right_mode": {
+            "status": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "timestamp": "",
+                "value": false
+              }
+            ],
+            "duration": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "unit": "second",
+                "timestamp": "",
+                "value": 0
+              }
+            ],
+            "counter": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "timestamp": "",
+                "value": 0,
+                "starttimestamp": "",
+                "endtimestamp": ""
+              }
+            ],
+            "totalcounter": [
+              {
+                "pom": "ioutput",
+                "pomt": "actual",
+                "timestamp": "",
+                "value": 0
+              }
+            ],
+            "timer": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "unit": "second",
+                "timestamp": "",
+                "value": 0,
+                "starttimestamp": "",
+                "endtimestamp": ""
+              }
+            ],
+            "totaltimer": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "unit": "hour",
+                "timestamp": "",
+                "value": 0
+              }
+            ],
+            "distance": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "unit": "meters",
+                "timestamp": "",
+                "value": 0,
+                "starttimestamp": "",
+                "endtimestamp": "",
+                "reference": "absolute"
+              }
+            ],
+            "totaldistance": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "unit": "kilometre",
+                "timestamp": "",
+                "value": 0,
+                "reference": "absolute"
+              }
+            ]
+          }
+        }
+      ],
+      "spreader": [
+        {
+          "id": 200,
+          "name": "",
+          "number": 0,
+          "type": "",
+          "family": "",
+          "brand": "",
+          "model": "",
+          "size": {
+            "lenght": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "unit": "foot",
+                "timestamp": "",
+                "value": 0
+              }
+            ]
+          },
+          "size20foot": {
+            "status": [
+              {
+                "pom": "ioutput",
+                "pomt": "actual",
+                "timestamp": "",
+                "value": false
+              }
+            ]
+          },
+          "size40foot": {
+            "status": [
+              {
+                "pom": "ioutput",
+                "pomt": "actual",
+                "timestamp": "",
+                "value": false
+              }
+            ]
+          },
+          "single": {
+            "status": [
+              {
+                "pom": "ioutput",
+                "pomt": "actual",
+                "timestamp": "",
+                "value": false
+              }
+            ]
+          },
+          "twin": {
+            "status": [
+              {
+                "pom": "ioutput",
+                "pomt": "actual",
+                "timestamp": "",
+                "value": false
+              }
+            ]
+          },
+          "locked": {
+            "status": [
+              {
+                "pom": "ioutput",
+                "pomt": "actual",
+                "timestamp": "2018-11-05T00:08:11",
+                "value": "True"
+              }
+            ]
+          },
+          "unlocked": {
+            "status": [
+              {
+                "pom": "ioutput",
+                "pomt": "actual",
+                "timestamp": "2018-11-05T00:08:11",
+                "value": "False"
+              }
+            ]
+          }
+        }
+      ],
+      "hoist": [
+        {
+          "id": 300,
+          "name": "",
+          "number": 0,
+          "type": "",
+          "family": "",
+          "brand": "",
+          "model": "",
+          "hoisting": {
+            "height": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "unit": "meters",
+                "timestamp": "2018-11-05T00:08:11",
+                "value": 2.23,
+                "reference": "ground_+up",
+                "name": ""
+              }
+            ]
+          },
+          "weight": {
+            "gross": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 2.712
+              },
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "name": "front",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 0
+              },
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "name": "rear",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 0
+              },
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "name": "loadcell_1",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 0
+              },
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "name": "loadcell_2",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 0
+              },
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "name": "loadcell_3",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 0
+              },
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "name": "loadcell_4",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 0
+              }
+            ],
+            "nett": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 0
+              },
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "name": "front",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 0
+              },
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "name": "rear",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 0
+              },
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "name": "loadcell_1",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 0
+              },
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "name": "loadcell_2",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 0
+              },
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "name": "loadcell_3",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 0
+              },
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "name": "loadcell_4",
+                "timestamp": "",
+                "unit": "ton",
+                "value": 0
+              }
+            ]
+          }
+        }
+      ],
+      "trolley": [
+        {
+          "id": 400,
+          "name": "",
+          "number": 0,
+          "type": "",
+          "family": "",
+          "brand": "",
+          "model": "",
+          "trolleying": {
+            "reach": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "unit": "meters",
+                "timestamp": "2018-11-05T00:08:11",
+                "value": 43.5,
+                "reference": "backreach"
+              }
+            ]
+          }
+        }
+      ],
+      "boom": [
+        {
+          "id": "",
+          "name": "",
+          "number": 0,
+          "type": "",
+          "family": "",
+          "brand": "",
+          "model": "",
+          "booming": {
+            "reach": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "unit": "meters",
+                "timestamp": "",
+                "value": 1,
+                "reference": "retracted"
+              }
+            ],
+            "angle": [
+              {
+                "pom": "output",
+                "pomt": "actual",
+                "unit": "degree",
+                "timestamp": "",
+                "value": 0,
+                "reference": "horizont_+up"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

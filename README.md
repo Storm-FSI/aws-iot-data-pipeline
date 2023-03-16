@@ -207,3 +207,34 @@ cdk destroy `
 
 #### 2. Delete S3 Output Bucket
 Delete the S3 output bucket named ``<organization>-<environment>-<application>-output-bucket-<account>-<region>``.
+
+
+## Testing
+
+#### 1. Setup Kinesis Data Generator
+For using the Amazon Kinesis Data Generator, you need to create an Amazon Cognito user in your account with permissions
+to access Kinesis. This process is documented [here](https://awslabs.github.io/amazon-kinesis-data-generator/web/help.html).
+You can use CloudFormation to simplify the process.
+
+#### 2. Inject Sample Data
+After you have created the Amazon Cognito user CloudFormation Stack, you can inject sample data into your Kinesis data
+stream by using the Data Generator and [sample_data.json](docs/sample_data/sample_data.json).\
+\
+![kinesis_data_generator](docs/images/kinesis_data_generator.png)
+
+#### 3. Query S3 using Athena
+As soon as the sample data has been written to S3 by the Glue ETL Job, you can query it via the Athena Query editor.
+```roomsql
+SELECT *
+FROM "<organization>-<environment>-<application>-output-database"."<organization>-<environment>-<application>-output-table"
+LIMIT 10;
+```
+
+#### 4. Query Redshift
+As soon as the sample data has been written to Redshift by the Glue ETL Job, you can query it via the Redshift Query
+editor v2.
+```roomsql
+SELECT *
+FROM "<redshift-db-name>"."public"."<redshift-table-name>"
+LIMIT 10;
+```
