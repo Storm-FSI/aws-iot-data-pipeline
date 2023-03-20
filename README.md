@@ -3,7 +3,7 @@
 This project provides an AWS CDK app for deploying the displayed IoT data pipeline into an AWS environment. The purpose
 of the data pipeline is, to receive messages in the
 [TIC4.0 CHE Data Model 2022.003](https://tic40.atlassian.net/wiki/spaces/TIC40Definitions/pages/890961950/CHE+Data+Model+2022.003)
-format, reduce the messages to the [defined subset](pipeline_stack/config/selected_fields.json), and write the resulting
+format, reduce the messages to the [defined subset](pipeline_stack/config/kpis/kpi_sample.json), and write the resulting
 messages to S3 and Redshift in near real time.
 
 ## Getting Started
@@ -155,7 +155,7 @@ cdk deploy `
 #### 5. Create Redshift Table
 After successfully deploying the CloudFormation Stack, you need to create the Redshift Database table. The name of the
 table needs to match ``public.<redshift-table-name>``. The columns of the table need to match the
-[defined subset](pipeline_stack/config/selected_fields.json).
+[defined subset](pipeline_stack/config/kpis/kpi_sample.json).
 ```
 CREATE TABLE public.dev (
     msg_mid bigint ENCODE az64,

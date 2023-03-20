@@ -55,7 +55,7 @@ class PipelineStack(Stack):
         # SSM String Parameters
         kinesis_data_stream_name = "{}-stream".format(prefix)
         ssm_param_job_selected_fields_name = "{}-job-selected-fields".format(prefix)
-        selected_fields_json_string = Path(dirpath, 'config', 'selected_fields.json').read_text()
+        selected_fields_json_string = Path(dirpath, 'config', 'kpis', 'kpi_sample.json').read_text()
         s3_output_bucket_name = "{}-output-bucket-{}".format(prefix, postfix)
         glue_output_database_name = "{}-output-database".format(prefix)
         glue_output_table_name = "{}-output-table".format(prefix)
