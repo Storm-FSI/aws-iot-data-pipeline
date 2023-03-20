@@ -13,6 +13,7 @@ args = getResolvedOptions(
     sys.argv,
     [
         "JOB_NAME",
+        "windowSize",
         "selectedFields",
         "kinesisDB",
         "kinesisTable",
@@ -28,6 +29,7 @@ job = Job(glueContext)
 job.init(args["JOB_NAME"], args)
 
 # Read configuration
+param_window_size = args['windowSize']
 param_selected_fields = json.loads(args['selectedFields'])
 param_kinesis_db = args['kinesisDB']
 param_kinesis_table = args['kinesisTable']
@@ -127,7 +129,7 @@ glueContext.forEachBatch(
     frame=dataframe_KinesisStream_node,
     batch_function=processBatch,
     options={
-        "windowSize": "100 seconds",
+        "windowSize": param_window_size,
         "checkpointLocation": args["TempDir"] + "/" + args["JOB_NAME"] + "/checkpoint/"
     }
 )

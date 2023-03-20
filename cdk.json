@@ -42,6 +42,7 @@
     "job-worker-type": "G.025X",
     "job-number-of-workers": 2,
     "job-max-concurrent-runs": 2,
+    "job-window-size": "10 seconds",
     "redshift-db-name": "dev",
     "redshift-table-name": "dev",
     "redshift-admin-user": "admin",

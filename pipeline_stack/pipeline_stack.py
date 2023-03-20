@@ -38,6 +38,7 @@ class PipelineStack(Stack):
         job_worker_type = self.node.try_get_context("job-worker-type")
         job_number_of_workers = self.node.try_get_context("job-number-of-workers")
         job_max_concurrent_runs = self.node.try_get_context("job-max-concurrent-runs")
+        job_window_size = self.node.try_get_context("job-window-size")
         redshift_db_name = self.node.try_get_context("redshift-db-name")
         redshift_table_name = self.node.try_get_context("redshift-table-name")
         redshift_admin_user = self.node.try_get_context("redshift-admin-user")
@@ -229,6 +230,7 @@ class PipelineStack(Stack):
             job_bucket_deployment_path=str(Path(dirpath, 'runtime', 'glue_job_assets_bucket')),
             script_location="s3://{}-jobassets-{}/job_script.py".format(prefix, postfix),
             job_params={
+                "--windowSize": job_window_size,
                 "--kinesisDB": glue_kinesis_database.database.database_input.name,
                 "--kinesisTable": glue_kinesis_database.table.table_input.name,
                 "--selectedFields": selected_fields_json_string,

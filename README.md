@@ -58,12 +58,18 @@ messages to S3 and Redshift in near real time.
 
 ### Context Variables
 #### Required
-- `account` The account number to use for deployment.
-- `region` The region to use for deployment.
-- `organization` The organization name.
-- `environment` The environment name.
-- `application` The application name.
-- `redshift-admin-password` The password for the Redshift admin user.
+- `account`
+  - Description: The account number to use for the deployment of the CDK app.
+- `region`
+  - Description: The region to use for deployment of the CDK app.
+- `organization`
+  - Description: The organization name
+- `environment`
+  - Description: The environment name.
+- `application`
+  - Description: The application name.
+- `redshift-admin-password`
+  - Description: The password for the Redshift admin user.
 
 #### Optional
 - `kinesis-shard-count`
@@ -78,6 +84,10 @@ messages to S3 and Redshift in near real time.
 - `job-max-concurrent-runs`
   - Description: The maximum number of concurrent runs for the Glue ETL job.
   - Default: 2
+- `job-window-size`
+  - Description: The window size of the Glue ETL job. This parameter determines, at which rate the Glue ETL Job gets
+    triggered and therefore fetches and processes the data from the Kinesis data stream.
+  - Default: "10 seconds"
 - `redshift-db-name`
   - Description: The name of the Redshift database.
   - Default: "dev"
