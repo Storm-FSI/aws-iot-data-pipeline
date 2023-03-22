@@ -1,4 +1,4 @@
-# AWS TIC 4.0 IoT Data Pipeline POC
+# AWS IoT TIC 4.0 Data Pipeline POC
 ![image-iot-data-pipeline](docs/images/iot_data_pipeline.png)
 This project provides an AWS CDK app for deploying the displayed IoT data pipeline into an AWS environment. The purpose
 of the data pipeline is, to receive messages in the
