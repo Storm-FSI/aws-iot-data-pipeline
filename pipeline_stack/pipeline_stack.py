@@ -1,5 +1,7 @@
 from pathlib import Path
+from string import Template
 
+import aws_cdk.aws_cloudwatch as cloudwatch
 import aws_cdk.aws_ec2 as ec2
 import aws_cdk.aws_glue as glue
 import aws_cdk.aws_iam as iam
@@ -249,3 +251,23 @@ class PipelineStack(Stack):
         glue_job.node.add_dependency(glue_kinesis_database)
         glue_job.node.add_dependency(s3_output_bucket)
         glue_job.node.add_dependency(glue_redshift_connection)
+
+        # Cloudwatch Dashboard
+        dashboard = cloudwatch.CfnDashboard(
+            self,
+            "Dashboard",
+            dashboard_name=prefix,
+            dashboard_body=Template(Path(dirpath, 'config', 'dashboards', 'dashboard_sample.json').read_text())
+            .substitute(
+                region=self.region,
+                kinesis_data_stream_name=kinesis_data_stream.stream_name,
+                glue_job_name=glue_job.job.name,
+                s3_output_bucket_name=s3_output_bucket.bucket_name,
+                redshift_cluster_identifier=redshift_cluster.cluster.cluster_identifier
+            )
+        )
+
+        dashboard.node.add_dependency(kinesis_data_stream)
+        dashboard.node.add_dependency(glue_job)
+        dashboard.node.add_dependency(s3_output_bucket)
+        dashboard.node.add_dependency(redshift_cluster)

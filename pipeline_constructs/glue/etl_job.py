@@ -141,7 +141,7 @@ class EtlJob(Construct):
             }
         )
 
-        job = glue.CfnJob(
+        self.job = glue.CfnJob(
             self,
             "Job",
             name=job_name,
@@ -175,5 +175,5 @@ class EtlJob(Construct):
             execution_class="STANDARD"
         )
 
-        job.node.add_dependency(job_assets_bucket_deployment)
-        job.node.add_dependency(job_role)
+        self.job.node.add_dependency(job_assets_bucket_deployment)
+        self.job.node.add_dependency(job_role)

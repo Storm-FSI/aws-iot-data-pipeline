@@ -1,0 +1,302 @@
+{
+  "start": "-PT6H",
+  "periodOverride": "inherit",
+  "widgets": [
+    {
+      "height": 6,
+      "width": 6,
+      "y": 0,
+      "x": 6,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          [ "AWS/S3", "BucketSizeBytes", "StorageType", "StandardStorage", "BucketName", "${s3_output_bucket_name}", { "label": "${s3_output_bucket_name}" } ]
+        ],
+        "view": "singleValue",
+        "stacked": true,
+        "region": "${region}",
+        "title": "S3 Bucket Size",
+        "period": 604800,
+        "stat": "Sum",
+        "singleValueFullPrecision": false
+      }
+    },
+    {
+      "height": 6,
+      "width": 6,
+      "y": 0,
+      "x": 12,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          [ { "label": "", "region": "us-east-1", "expression": "SORT(search, MAX, DESC, 10)", "period": 86400 } ],
+          [ { "label": " ", "region": "us-east-1", "expression": "SEARCH('{AWS/Billing,Currency,ServiceName} MetricName=\"EstimatedCharges\"', 'Maximum', 86400)", "period": 86400, "visible": false, "id": "search" } ]
+        ],
+        "view": "pie",
+        "title": "Billing Estimated Cost",
+        "region": "us-east-1",
+        "yAxis": {
+          "left": {
+            "min": 0,
+            "label": "USD",
+            "showUnits": false
+          }
+        },
+        "period": 86400,
+        "stacked": true,
+        "stat": "Average",
+        "labels": {
+          "visible": false
+        }
+      }
+    },
+    {
+      "height": 6,
+      "width": 6,
+      "y": 6,
+      "x": 18,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          [ { "expression": "SELECT SUM(\"glue.driver.aggregate.numFailedTasks\") FROM Glue WHERE JobName = '${glue_job_name}' GROUP BY JobName", "label": "", "id": "q1", "region": "${region}", "period": 60 } ]
+        ],
+        "view": "timeSeries",
+        "stacked": true,
+        "region": "${region}",
+        "stat": "Average",
+        "period": 60,
+        "title": "Glue Number of Failed Tasks",
+        "yAxis": {
+          "left": {
+            "label": "Count",
+            "showUnits": false
+          },
+          "right": {
+            "showUnits": false
+          }
+        }
+      }
+    },
+    {
+      "height": 6,
+      "width": 6,
+      "y": 6,
+      "x": 12,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          [ { "expression": "SELECT SUM(\"glue.driver.streaming.batchProcessingTimeInMs\") FROM Glue WHERE JobName = '${glue_job_name}' GROUP BY JobName", "label": "", "id": "q1", "region": "${region}", "period": 60, "stat": "Sum" } ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "${region}",
+        "stat": "Sum",
+        "period": 60,
+        "title": "Glue Batch Processing Time",
+        "yAxis": {
+          "left": {
+            "label": "Milliseconds",
+            "showUnits": false
+          },
+          "right": {
+            "showUnits": false
+          }
+        }
+      }
+    },
+    {
+      "height": 6,
+      "width": 6,
+      "y": 6,
+      "x": 6,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          [ { "expression": "SELECT SUM(\"glue.driver.aggregate.elapsedTime\") FROM Glue WHERE JobName = '${glue_job_name}' GROUP BY JobName", "label": "", "id": "q1", "region": "${region}", "stat": "Sum", "period": 60 } ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "${region}",
+        "stat": "Sum",
+        "period": 60,
+        "title": "Glue ETL Elapsed Time",
+        "yAxis": {
+          "left": {
+            "label": "Milliseconds",
+            "showUnits": false
+          },
+          "right": {
+            "showUnits": false
+          }
+        }
+      }
+    },
+    {
+      "height": 6,
+      "width": 6,
+      "y": 6,
+      "x": 0,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          [ { "expression": "SELECT SUM(\"glue.driver.aggregate.recordsRead\") FROM Glue WHERE JobName = '${glue_job_name}' GROUP BY JobName", "label": "", "id": "q1", "region": "${region}", "period": 300 } ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "${region}",
+        "stat": "Sum",
+        "period": 300,
+        "title": "Glue Number of Records Read",
+        "yAxis": {
+          "left": {
+            "showUnits": false,
+            "label": "Count"
+          },
+          "right": {
+            "showUnits": false
+          }
+        }
+      }
+    },
+    {
+      "height": 6,
+      "width": 6,
+      "y": 12,
+      "x": 0,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          [ { "expression": "SELECT SUM(\"glue.ALL.jvm.heap.usage\") FROM Glue WHERE JobName = '${glue_job_name}' GROUP BY JobName", "label": "", "id": "q1", "region": "${region}" } ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "${region}",
+        "period": 300,
+        "stat": "Average",
+        "title": "Glue Memory Usage",
+        "yAxis": {
+          "left": {
+            "label": "Percent",
+            "showUnits": false
+          },
+          "right": {
+            "showUnits": false
+          }
+        }
+      }
+    },
+    {
+      "height": 6,
+      "width": 6,
+      "y": 12,
+      "x": 6,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          [ { "expression": "SELECT SUM(\"glue.ALL.jvm.heap.used\") FROM Glue WHERE JobName = '${glue_job_name}' GROUP BY JobName", "label": "", "id": "q1", "region": "${region}", "period": 60, "stat": "Sum" } ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "${region}",
+        "period": 60,
+        "stat": "Sum",
+        "title": "Glue Memory Usage",
+        "yAxis": {
+          "left": {
+            "label": "Bytes",
+            "showUnits": false
+          },
+          "right": {
+            "showUnits": false
+          }
+        }
+      }
+    },
+    {
+      "height": 6,
+      "width": 6,
+      "y": 0,
+      "x": 18,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          [ "AWS/Redshift", "CPUUtilization", "ClusterIdentifier", "${redshift_cluster_identifier}", { "label": "${redshift_cluster_identifier}" } ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "${region}",
+        "title": "Redshift CPU Utilization",
+        "period": 300,
+        "yAxis": {
+          "left": {
+            "showUnits": true,
+            "label": ""
+          },
+          "right": {
+            "showUnits": false
+          }
+        },
+        "stat": "Average"
+      }
+    },
+    {
+      "height": 6,
+      "width": 6,
+      "y": 0,
+      "x": 0,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          [ "AWS/Kinesis", "IncomingRecords", "StreamName", "${kinesis_data_stream_name}", { "label": "${kinesis_data_stream_name}" } ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "${region}",
+        "period": 300,
+        "stat": "Sum",
+        "title": "Kinesis Incoming Records",
+        "yAxis": {
+          "left": {
+            "showUnits": false,
+            "label": "Count"
+          },
+          "right": {
+            "showUnits": false
+          }
+        }
+      }
+    },
+    {
+      "height": 6,
+      "width": 12,
+      "y": 12,
+      "x": 12,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          [ { "expression": "SELECT SUM(\"glue.driver.streaming.numRecords\") FROM SCHEMA(Glue, JobName,JobRunId,Type) WHERE JobName = '${glue_job_name}' GROUP BY JobName", "label": "", "id": "q1", "region": "${region}" } ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "${region}",
+        "stat": "Average",
+        "period": 300,
+        "liveData": true,
+        "yAxis": {
+          "right": {
+            "showUnits": false
+          },
+          "left": {
+            "showUnits": false,
+            "label": "Count"
+          }
+        },
+        "setPeriodToTimeRange": true,
+        "legend": {
+          "position": "bottom"
+        },
+        "title": "Glue Number of Records per Batch"
+      }
+    }
+  ]
+}
