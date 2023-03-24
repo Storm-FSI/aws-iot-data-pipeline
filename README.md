@@ -196,9 +196,12 @@ CREATE TABLE public.dev (
 ) DISTSTYLE AUTO;
 ```
 
-#### 6. Start the Job
-Manually start the Glue ETL Job via the AWS Management Console.
+#### 6. Configure Athena Query Editor
+Configure the Athena Query editor to use the S3 bucket
+`<organization>-<environment>-<application>-athena-results-<account>-<region>` for the Athena query results.
 
+#### 7. Start the Job
+Manually start the Glue ETL Streaming Job via the AWS Management Console.
 
 ### Delete CDK app
 
