@@ -51,7 +51,7 @@ class PipelineStack(Stack):
         # Prefix for resource names
         prefix = "{}-{}-{}".format(organization, environment, application)
 
-        # Postfix for global resources names, e.g. S3 buckets
+        # Postfix for globally unique resource names, e.g. S3 buckets
         postfix = "{}-{}".format(self.account, self.region)
 
         # SSM String Parameters
