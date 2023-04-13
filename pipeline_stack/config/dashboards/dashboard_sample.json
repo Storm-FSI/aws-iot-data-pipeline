@@ -216,33 +216,6 @@
       "height": 6,
       "width": 6,
       "y": 0,
-      "x": 18,
-      "type": "metric",
-      "properties": {
-        "metrics": [
-          [ "AWS/Redshift", "CPUUtilization", "ClusterIdentifier", "${redshift_cluster_identifier}", { "label": "${redshift_cluster_identifier}" } ]
-        ],
-        "view": "timeSeries",
-        "stacked": false,
-        "region": "${region}",
-        "title": "Redshift CPU Utilization",
-        "period": 300,
-        "yAxis": {
-          "left": {
-            "showUnits": true,
-            "label": ""
-          },
-          "right": {
-            "showUnits": false
-          }
-        },
-        "stat": "Average"
-      }
-    },
-    {
-      "height": 6,
-      "width": 6,
-      "y": 0,
       "x": 0,
       "type": "metric",
       "properties": {
