@@ -1,10 +1,10 @@
 # AWS IoT TIC 4.0 Data Pipeline POC
-![image-iot-data-pipeline](docs/images/iot_data_pipeline.png)
+![image-iot-data-pipeline](docs/images/iot_tic40_data_pipeline.png)
 This project provides an AWS CDK app for deploying the displayed IoT data pipeline into an AWS environment. The purpose
 of the data pipeline is, to receive messages in the
 [TIC 4.0 CHE Data Model 2022.003](https://tic40.atlassian.net/wiki/spaces/TIC40Definitions/pages/890961950/CHE+Data+Model+2022.003)
 format, reduce the messages to the [defined subset](pipeline_stack/config/kpis/kpi_sample.json), and write the resulting
-messages to S3 and Redshift in near real time.
+messages to S3 in near real time.
 
 ## Getting Started
 
@@ -68,8 +68,6 @@ messages to S3 and Redshift in near real time.
   - Description: The environment name.
 - `application`
   - Description: The application name.
-- `redshift-admin-password`
-  - Description: The password for the Redshift admin user.
 
 #### Optional
 - `kinesis-shard-count`
@@ -88,21 +86,6 @@ messages to S3 and Redshift in near real time.
   - Description: The window size of the Glue ETL job. This parameter determines, at which rate the Glue ETL Job gets
     triggered and therefore fetches and processes the data from the Kinesis data stream.
   - Default: "10 seconds"
-- `redshift-db-name`
-  - Description: The name of the Redshift database.
-  - Default: "dev"
-- `redshift-table-name`
-  - Description: The name of the Redshift table.
-  - Default: "dev"
-- `redshift-admin-user`
-  - Description: The name of the Redshift admin user.
-  - Default: "admin"
-- `redshift-node-type`
-  - Description: The Redshift cluster node type.
-  - Default: "dc2.large"
-- `redshift-number-of-nodes`
-  - Description: The number of Redshift cluster nodes.
-  - Default: 1
 
 
 ### Deploy CDK app
@@ -121,7 +104,6 @@ cdk bootstrap `
 -c organization='<ORGANIZATION>' `
 -c environment='<ENVIRONMENT>' `
 -c application='<APPLICATION>' `
--c redshift-admin-password='<PASSWORD>' `
 aws://<ACCOUNT>/<REGION>
 ```
 
@@ -134,7 +116,6 @@ cdk synth `
 -c organization='<ORGANIZATION>' `
 -c environment='<ENVIRONMENT>' `
 -c application='<APPLICATION>' `
--c redshift-admin-password='<PASSWORD>' `
 <ORGANIZATION>-<ENVIRONMENT>-<APPLICATION>
 ```
 
@@ -148,59 +129,14 @@ cdk deploy `
 -c organization='<ORGANIZATION>' `
 -c environment='<ENVIRONMENT>' `
 -c application='<APPLICATION>' `
--c redshift-admin-password='<PASSWORD>' `
 <ORGANIZATION>-<ENVIRONMENT>-<APPLICATION>
 ```
 
-#### 5. Create Redshift Table
-After successfully deploying the CloudFormation Stack, you need to create the Redshift Database table. The name of the
-table needs to match ``public.<redshift-table-name>``. The columns of the table need to match the
-[defined subset](pipeline_stack/config/kpis/kpi_sample.json).
-```
-CREATE TABLE public.dev (
-    msg_mid bigint ENCODE az64,
-    msg_id character varying(1000) ENCODE lzo,
-    msg_timestamp character varying(1000) ENCODE lzo,
-    msg_sender character varying(1000) ENCODE lzo,
-    msg_topic character varying(1000) ENCODE lzo,
-    msg_destinantion character varying(1000) ENCODE lzo,
-    msg_creationtimestamp character varying(1000) ENCODE lzo,
-    msg_starttimestamp character varying(1000) ENCODE lzo,
-    msg_endtimestamp character varying(1000) ENCODE lzo,
-    msg_version character varying(1000) ENCODE lzo,
-    che_id bigint ENCODE az64,
-    che_name character varying(1000) ENCODE lzo,
-    che_number bigint ENCODE az64,
-    che_type character varying(1000) ENCODE lzo,
-    che_family character varying(1000) ENCODE lzo,
-    che_brand character varying(1000) ENCODE lzo,
-    che_model character varying(1000) ENCODE lzo,
-    che_on_status_timestamp character varying(1000) ENCODE lzo,
-    che_on_status_value character varying(1000) ENCODE lzo,
-    che_control_id bigint ENCODE az64,
-    che_control_modespreader_status_timestamp character varying(1000) ENCODE lzo,
-    che_control_modespreader_status_value character varying(1000) ENCODE lzo,
-    che_spreader_id bigint ENCODE az64,
-    che_spreader_locked_status_timestamp character varying(1000) ENCODE lzo,
-    che_spreader_locked_status_value character varying(1000) ENCODE lzo,
-    che_spreader_unlocked_status_timestamp character varying(1000) ENCODE lzo,
-    che_spreader_unlocked_status_value character varying(1000) ENCODE lzo,
-    che_hoist_id bigint ENCODE az64,
-    che_hoist_hoisting_height_timestamp character varying(1000) ENCODE lzo,
-    che_hoist_hoisting_height_value double precision ENCODE raw,
-    che_hoist_weight_gross_value double precision ENCODE raw,
-    che_trolley_id bigint ENCODE az64,
-    che_trolley_trolleying_reach_timestamp character varying(1000) ENCODE lzo,
-    che_trolley_trolleying_reach_value double precision ENCODE raw,
-    che_trolley_trolleying_reach_reference character varying(1000) ENCODE lzo
-) DISTSTYLE AUTO;
-```
-
-#### 6. Configure Athena Query Editor
+#### 5. Configure Athena Query Editor
 Configure the Athena Query editor to use the S3 bucket
 `<organization>-<environment>-<application>-athena-results-<account>-<region>` for the Athena query results.
 
-#### 7. Start the Job
+#### 6. Start the Job
 Manually start the Glue ETL Streaming Job via the AWS Management Console.
 
 ### Delete CDK app
@@ -214,7 +150,6 @@ cdk destroy `
 -c organization='<ORGANIZATION>' `
 -c environment='<ENVIRONMENT>' `
 -c application='<APPLICATION>' `
--c redshift-admin-password='<PASSWORD>' `
 <ORGANIZATION>-<ENVIRONMENT>-<APPLICATION>
 ```
 
@@ -240,14 +175,5 @@ As soon as the sample data has been written to S3 by the Glue ETL Job, you can q
 ```roomsql
 SELECT *
 FROM "<organization>-<environment>-<application>-output-database"."<organization>-<environment>-<application>-output-table"
-LIMIT 10;
-```
-
-#### 4. Query Redshift
-As soon as the sample data has been written to Redshift by the Glue ETL Job, you can query it via the Redshift Query
-editor v2.
-```roomsql
-SELECT *
-FROM "<redshift-db-name>"."public"."<redshift-table-name>"
 LIMIT 10;
 ```

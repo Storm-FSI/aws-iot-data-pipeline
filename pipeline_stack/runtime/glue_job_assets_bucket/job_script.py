@@ -8,6 +8,7 @@ from awsglue.job import Job
 from awsglue.transforms import *
 from awsglue.utils import getResolvedOptions
 from pyspark.context import SparkContext
+from pyspark.sql.functions import col
 
 args = getResolvedOptions(
     sys.argv,
@@ -17,10 +18,7 @@ args = getResolvedOptions(
         "selectedFields",
         "kinesisDB",
         "kinesisTable",
-        "s3OutputBucket",
-        "glueRedshiftConnection",
-        "redshiftDB",
-        "redshiftTable"
+        "s3OutputBucket"
     ]
 )
 sc = SparkContext()
@@ -34,9 +32,6 @@ param_selected_fields = json.loads(args['selectedFields'])
 param_kinesis_db = args['kinesisDB']
 param_kinesis_table = args['kinesisTable']
 param_s3_output_bucket = args['s3OutputBucket']
-param_redshift_connection = args['glueRedshiftConnection']
-param_redshift_db = args['redshiftDB']
-param_redshift_table = args['redshiftTable']
 
 # Script generated for node Kinesis Stream
 dataframe_KinesisStream_node = glueContext.create_data_frame.from_catalog(
@@ -51,12 +46,10 @@ dataframe_KinesisStream_node = glueContext.create_data_frame.from_catalog(
     transformation_ctx="dataframe_KinesisStream_node"
 )
 
-
 # Select fields from config file on AWS SSM and create new colums for each field
 def select_fields_from_kinesisDF(df, selected_fields):
-    for col_name, col_path in selected_fields.items():
-        df = df.withColumn(col_name, eval(col_path))
-    return df
+    selected_df = df.select("*", *[eval(v).alias(k) for k,v in selected_fields.items()])
+    return selected_df
 
 
 def processBatch(data_frame, batchId):
@@ -68,7 +61,7 @@ def processBatch(data_frame, batchId):
         # Convert kinesisStream to Dataframe
         kinesis_df = KinesisStream_node1.toDF()
 
-        # Create a dictionary of selected fields based on conifguration
+        # Create a dictionary of selected fields based on configuration
         selected_fields = {}
         for field in param_selected_fields['selected-fields']:
             for col_name, col_path in field.items():
@@ -111,17 +104,6 @@ def processBatch(data_frame, batchId):
             format="json",
             connection_options={"path": S3bucket_node_path, "partitionKeys": []},
             transformation_ctx="S3bucket_node"
-        )
-
-        write_redshift = glueContext.write_dynamic_frame.from_jdbc_conf(
-            frame=selected_kinesisFields_dyf,
-            catalog_connection=param_redshift_connection,
-            connection_options={
-                "database": param_redshift_db,
-                "dbtable": param_redshift_table
-            },
-            redshift_tmp_dir=args["TempDir"],
-            transformation_ctx="write_redshift"
         )
 
 

@@ -18,7 +18,6 @@ pipeline_stack = PipelineStack(
     organization=ORGANIZATION,
     environment=ENVIRONMENT,
     application=APPLICATION,
-    # env=cdk.Environment(account=os.getenv('CDK_DEFAULT_ACCOUNT'), region=os.getenv('CDK_DEFAULT_REGION')),
     env=Environment(account=ACCOUNT, region=REGION)
 )
 

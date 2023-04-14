@@ -22,8 +22,7 @@ class EtlJob(Construct):
             script_location: str,
             job_params: dict,
             kinesis_stream_arn: str,
-            output_bucket_arn: str,
-            connections: [str]
+            output_bucket_arn: str
     ):
         super().__init__(scope, construct_id)
 
@@ -122,21 +121,6 @@ class EtlJob(Construct):
                             ]
                         )
                     ]
-                ),
-                "AmazonRedshiftModifyPermission": iam.PolicyDocument(
-                    statements=[
-                        iam.PolicyStatement(
-                            effect=iam.Effect.ALLOW,
-                            actions=[
-                                "redshift:ListDatabases",
-                                "redshift:ExecuteQuery",
-                                "redshift:ListTables"
-                            ],
-                            resources=[
-                                "*"
-                            ]
-                        )
-                    ]
                 )
             }
         )
@@ -166,9 +150,6 @@ class EtlJob(Construct):
                 "--job-language": "python",
                 "--TempDir": "s3://{}/temporary/".format(job_assets_bucket.bucket_name)
             } | job_params,
-            connections=glue.CfnJob.ConnectionsListProperty(
-                connections=connections
-            ),
             max_retries=3,
             worker_type=worker_type,
             number_of_workers=number_of_workers,

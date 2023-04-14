@@ -174,6 +174,10 @@ class OutputDatabase(Construct):
                         {
                             "name": "che_trolley_trolleying_reach_reference",
                             "type": "string"
+                        },
+                        {
+                            "name":"che_cycle_move_counter_move_id",
+                            "type": "int"
                         }
 
                     ],
@@ -186,7 +190,7 @@ class OutputDatabase(Construct):
                         serialization_library='org.openx.data.jsonserde.JsonSerDe',
                         parameters={
                             "serialization.format": "1",
-                            "paths": "che_brand,che_control_id,che_control_modespreader_status_timestamp,che_control_modespreader_status_value,che_family,che_hoist_hoisting_height_timestamp,che_hoist_hoisting_height_value,che_hoist_id,che_hoist_weight_gross_value,che_id,che_model,che_name,che_number,che_on_status_timestamp,che_on_status_value,che_spreader_id,che_spreader_locked_status_timestamp,che_spreader_locked_status_value,che_spreader_unlocked_status_timestamp,che_spreader_unlocked_status_value,che_trolley_id,che_trolley_trolleying_reach_reference,che_trolley_trolleying_reach_timestamp,che_trolley_trolleying_reach_value,che_type,msg_creationtimestamp,msg_destinantion,msg_endtimestamp,msg_id,msg_mid,msg_sender,msg_starttimestamp,msg_timestamp,msg_topic,msg_version"
+                            "paths": "che_brand,che_control_id,che_control_modespreader_status_timestamp,che_control_modespreader_status_value,che_family,che_hoist_hoisting_height_timestamp,che_hoist_hoisting_height_value,che_hoist_id,che_hoist_weight_gross_value,che_id,che_model,che_name,che_number,che_on_status_timestamp,che_on_status_value,che_spreader_id,che_spreader_locked_status_timestamp,che_spreader_locked_status_value,che_spreader_unlocked_status_timestamp,che_spreader_unlocked_status_value,che_trolley_id,che_trolley_trolleying_reach_reference,che_trolley_trolleying_reach_timestamp,che_trolley_trolleying_reach_value,che_type,msg_creationtimestamp,msg_destinantion,msg_endtimestamp,msg_id,msg_mid,msg_sender,msg_starttimestamp,msg_timestamp,msg_topic,msg_version,che_cycle_move_counter_move_id"
                         }
                     ),
                     sort_columns=None,
