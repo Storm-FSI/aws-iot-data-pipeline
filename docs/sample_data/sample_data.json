@@ -1,19 +1,30 @@
 {
   "msg": {
-    "id": "72a832b0-b513-11ed-aa1c-8f447fb080c7",
+    "id": "8f693ff9-b513-11ed-aa1c-8f447fb080c7",
     "sender": "DEWVN/CTW/STS/88Simulator",
-    "timestamp": "2023-02-25T14:51:06.253933",
+    "timestamp": "2023-02-25T14:51:54.975334",
     "topic": "",
     "destinantion": "",
     "creationtimestamp": "",
     "starttimestamp": "",
     "endtimestamp": "",
     "version": "2022.005",
-    "mid": 5027
+    "mid": 110423
   },
   "che": [
     {
       "id": 999999,
+      "cycle": [
+        {
+          "move": {
+            "counter": [
+              {
+                "move_id": 1111
+              }
+            ]
+          }
+        }
+      ],
       "name": "DEWVN/CTW/STS/88",
       "number": 88,
       "type": "STS",
@@ -67,7 +78,7 @@
           {
             "pom": "ioutput",
             "pomt": "actual",
-            "timestamp": "2018-11-05T00:08:11",
+            "timestamp": "2018-11-05T00:16:08",
             "value": "True",
             "offtoontime": ""
           }
@@ -98,7 +109,7 @@
                 {
                   "pom": "ioutput",
                   "pomt": "actual",
-                  "timestamp": "2018-11-05T00:08:11",
+                  "timestamp": "2018-11-05T00:16:08",
                   "value": "True"
                 }
               ]
@@ -261,8 +272,8 @@
               {
                 "pom": "ioutput",
                 "pomt": "actual",
-                "timestamp": "2018-11-05T00:08:11",
-                "value": "True"
+                "timestamp": "2018-11-05T00:16:08",
+                "value": "False"
               }
             ]
           },
@@ -271,8 +282,8 @@
               {
                 "pom": "ioutput",
                 "pomt": "actual",
-                "timestamp": "2018-11-05T00:08:11",
-                "value": "False"
+                "timestamp": "2018-11-05T00:16:08",
+                "value": "True"
               }
             ]
           }
@@ -293,8 +304,8 @@
                 "pom": "output",
                 "pomt": "actual",
                 "unit": "meters",
-                "timestamp": "2018-11-05T00:08:11",
-                "value": 2.23,
+                "timestamp": "2018-11-05T00:16:08",
+                "value": -3.62,
                 "reference": "ground_+up",
                 "name": ""
               }
@@ -307,7 +318,7 @@
                 "pomt": "actual",
                 "timestamp": "",
                 "unit": "ton",
-                "value": 2.712
+                "value": 6.014
               },
               {
                 "pom": "output",
@@ -433,8 +444,8 @@
                 "pom": "output",
                 "pomt": "actual",
                 "unit": "meters",
-                "timestamp": "2018-11-05T00:08:11",
-                "value": 43.5,
+                "timestamp": "2018-11-05T00:16:08",
+                "value": 103.57,
                 "reference": "backreach"
               }
             ]
